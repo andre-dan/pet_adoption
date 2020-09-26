@@ -1,0 +1,25 @@
+<%= bootstrap_form_for pet do |f| %>
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <%= f.text_field :name, required: true %>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <%= f.date_field :date_of_birth, required: true %>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <%= f.select(:pet_type, [['Gato', :cat], ['Cachorro', :dog], ['Outros', :other]], { include_blank: 'Selecione uma opção' }, required: true ) %>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-1 offset-md-9">
+        <%= f.submit "Create", class: "btn btn-default btn-primary" %>
+    </div>
+</div>
+
+<% end %>
