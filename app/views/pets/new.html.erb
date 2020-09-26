@@ -1,0 +1,10 @@
+<div class="col-md-8 offset-md-2">
+    <h1>Novo Pet</h1>
+</div>
+<%flash.each do |key, value|%>
+<div class='<%= flash_class(key.to_sym) %>'>
+    <%= value %>
+</div>
+
+<%end%>
+<%= render partial: "form", locals: {pet: @pet} %>
