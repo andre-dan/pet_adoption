@@ -1,0 +1,15 @@
+<%= bootstrap_form_for adoption, url: pet_adoptions_path do |f| %>
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <%= f.text_field :name, required: true %>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-1 offset-md-9">
+        <%= f.submit "Create", class: "btn btn-default btn-primary" %>
+    </div>
+</div>
+
+<% end %>
