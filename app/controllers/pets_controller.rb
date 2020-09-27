@@ -1,5 +1,9 @@
 class PetsController < ApplicationController
 
+    def index 
+        @pets = Pet.all
+    end
+    
     def new
         @pet = Pet.new
     end
@@ -9,12 +13,12 @@ class PetsController < ApplicationController
         
         if @pet.save
             flash[:success] = "Pet Criado Com Sucesso..."
+            redirect_to pets_path
         else
             puts @pet.errors.inspect
             flash[:error] = "Pet Não foi Criado..."
-        end
-        
-        render :new
+            render :new
+        end    
     end
     
     private
