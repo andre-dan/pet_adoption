@@ -8,6 +8,29 @@ class PetsController < ApplicationController
         @pet = Pet.new
     end
     
+    def edit
+        @pet = Pet.find(params[:id])
+    end
+
+    def show
+        @pet = Pet.find(params[:id])
+        if @pet.nil?
+            redirect_to  action: :index
+        end
+    end
+
+    def update
+        @pet = Pet.find(params[:id])
+        if @pet.update(pet_params)
+            flash[:success] = "Pet Atualizado Com Sucesso..."
+            redirect_to(@pet)
+        else
+            flash[:error] = "Seu Pet Não foi Atualizado..."
+            render :edit
+        end
+    end
+
+
     def create
         @pet = Pet.new(pet_params)
         
@@ -24,7 +47,7 @@ class PetsController < ApplicationController
     private
 
     def pet_params
-        params.require(:pet).permit(:name, :date_of_birth, :pet_type)
+        params.require(:pet).permit(:name, :date_of_birth, :pet_type, :avatar)
     end
 
 end

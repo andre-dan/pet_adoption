@@ -1,17 +1,28 @@
 <div class="container">
-    <%flash.each do |key, value|%>
-    <div class='<%= flash_class(key.to_sym) %>'>
-        <%= value %>
-    </div>
-
-    <%end%>
     <div class="card m-5">
         <div class="card-header">
             <div class="row">
                 <div class="col-md-12">
                     <div class="header">
-                        <div class="float-left">
+                        <div class="float-center">
                             <h4 class="header-title">Pets</h4>
+                        </div>
+                        <div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="customRadio1" name="customRadio" data-type="not_adopted"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="customRadio1">Pets Disponíveis</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="customRadio2" name="customRadio" data-type="adopted"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="customRadio2">Pets Adotados</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input checked type="radio" id="customRadio3" name="customRadio" data-type="all"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="customRadio3">Todos</label>
+                            </div>
                         </div>
                         <div class="float-right">
                             <%= link_to "Novo Pet", new_pet_path, class: 'btn btn-sm btn-success' %>
@@ -20,7 +31,7 @@
                 </div>
             </div>
         </div>
-        <div class="card-body">
+        <div class="card-body" data-teste="div_all" id="all">
             <% if @pets.any? %>
             <div class="table-responsive">
                 <table class='table'>
@@ -30,6 +41,7 @@
                             <th>Nascimento</th>
                             <th>Tipo</th>
                             <th>Adotar</th>
+                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,11 +51,19 @@
                             <td><%=pet.date_of_birth%></td>
                             <td><%=pet.pet_type%></td>
                             <% if pet.adoption %>
-                            <td>Pet Ja adotado</td>
+                            <td>Pet Adotado</td>
                             <% else %>
                             <td><%= link_to "Adotar", new_pet_adoption_path(pet), class: 'btn btn-sm btn-info' %>
                             </td>
                             <% end %>
+                            <td>
+                                <%= link_to edit_pet_path(pet), class: 'btn btn-sm btn-info' do %>
+                                <i class="fa fa-edit"></i>
+                                <% end %>
+                                <%= link_to pet_path(pet), class: 'btn btn-sm btn-info' do %>
+                                <i class="fa fa-eye"></i>
+                                <% end %>
+                            </td>
                         </tr>
                         <% end %>
                     </tbody>
@@ -51,9 +71,112 @@
             </div>
             <%else%>
             <div class="text-center">
-                Nenhum Pet Cadstrado
+                Nenhum Pet Cadastrado
             </div>
             <%end%>
         </div>
+        <div class="card-body d-none" data-teste="div_adopted" id="adopted">
+            <% if @pets.any? %>
+            <div class="table-responsive">
+                <table class='table'>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Nascimento</th>
+                            <th>Tipo</th>
+                            <th>Adotar</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%@pets.select{ |pet| pet.adoption }.each do |pet|%>
+                        <tr>
+                            <td><%=pet.name%></td>
+                            <td><%=pet.date_of_birth%></td>
+                            <td><%=pet.pet_type%></td>
+                            <% if pet.adoption %>
+                            <td>Pet Adotado</td>
+                            <% else %>
+                            <td><%= link_to "Adotar", new_pet_adoption_path(pet), class: 'btn btn-sm btn-info' %>
+                            </td>
+                            <% end %>
+                            <td>
+                                <%= link_to edit_pet_path(pet), class: 'btn btn-sm btn-info' do %>
+                                <i class="fa fa-edit"></i>
+                                <% end %>
+                                <%= link_to pet_path(pet), class: 'btn btn-sm btn-info' do %>
+                                <i class="fa fa-eye"></i>
+                                <% end %>
+                            </td>
+
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+            <%else%>
+            <div class="text-center">
+                Nenhum Pet Cadastrado
+            </div>
+            <%end%>
+        </div>
+
+        <div class="card-body d-none" data-teste="div_not_adopted" id="not_adopted">
+            <% if @pets.any? %>
+            <div class="table-responsive">
+                <table class='table'>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Nascimento</th>
+                            <th>Tipo</th>
+                            <th>Adotar</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%@pets.select{|pet| pet.adoption.nil?}.each do |pet|%>
+                        <tr>
+                            <td><%=pet.name%></td>
+                            <td><%=pet.date_of_birth%></td>
+                            <td><%=pet.pet_type%></td>
+                            <% if pet.adoption %>
+                            <td>Pet Adotado</td>
+                            <% else %>
+                            <td><%= link_to "Adotar", new_pet_adoption_path(pet), class: 'btn btn-sm btn-info' %>
+                            </td>
+                            <% end %>
+                            <td>
+                                <%= link_to edit_pet_path(pet), class: 'btn btn-sm btn-info' do %>
+                                <i class="fa fa-edit"></i>
+                                <% end %>
+                                <%= link_to pet_path(pet), class: 'btn btn-sm btn-info' do %>
+                                <i class="fa fa-eye"></i>
+                                <% end %>
+                            </td>
+
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+            <%else%>
+            <div class="text-center">
+                Nenhum Pet Cadastrado
+            </div>
+            <%end%>
+        </div>
+
     </div>
 </div>
+<script>
+    $(function () {
+        $('input[name=customRadio]').on('change', function () {
+            radio = $(this);
+            radioType = radio.data('type')
+            cardBody = document.getElementById(radioType)
+            $('.card-body').addClass('d-none')
+            $(cardBody).removeClass('d-none')
+        })
+    });
+</script>

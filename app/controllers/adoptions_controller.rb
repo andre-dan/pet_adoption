@@ -6,11 +6,6 @@ class AdoptionsController < ApplicationController
         @adoption = Adoption.new
     end
     
-    
-    def index 
-       
-    end
-
     def create
         @adoption = Adoption.new(adoption_params.merge(date: Date.today, pet: @pet))
       
@@ -23,8 +18,7 @@ class AdoptionsController < ApplicationController
             flash[:error] = "Novo Dono Não foi Criado..."
             render :new
         end
-        
-        
+         
     end
     
     private
