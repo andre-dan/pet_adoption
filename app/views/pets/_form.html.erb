@@ -1,7 +1,12 @@
-<%= bootstrap_form_for pet do |f| %>
+<%= bootstrap_form_for(pet) do |f| %>
 <div class="row">
     <div class="col-md-8 offset-md-2">
         <%= f.text_field :name, required: true %>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <%= f.file_field :avatar %>
     </div>
 </div>
 <div class="row">
@@ -18,7 +23,7 @@
 
 <div class="row">
     <div class="col-md-1 offset-md-9">
-        <%= f.submit "Create", class: "btn btn-default btn-primary" %>
+        <%= f.submit btn_label, class: "btn btn-default btn-primary" %>
     </div>
 </div>
 

@@ -1,0 +1,38 @@
+<div class="card container">
+    <div class="card-body">
+        <h5 class="card-title"><%= @pet.name.upcase %></h5>
+        <div class="row">
+            <div class="col-md-4">
+                <%= image_tag @pet.avatar %>
+            </div>
+            <div class="col-md-6">
+                <strong>
+                    <p class="card-text">Nome:
+                </strong> <%= @pet.name %>
+                </p>
+                </row>
+                <row>
+                    <strong>
+                        <p class="card-text">Nascimento:
+                    </strong> <%= @pet.date_of_birth %>
+                    </p>
+                </row>
+                <row>
+                    <strong>
+                        <p class="card-text">Tipo do Pet:
+                    </strong> <%= @pet.pet_type %>
+                    </p>
+                </row>
+            </div>
+        </div>
+
+        <row>
+            <strong>
+            </strong>
+            </p>
+        </row>
+        <a><%= link_to 'Editar', edit_pet_path(@pet), class: "btn btn-default btn-primary" %></a>
+        <a><%= link_to 'Voltar', pets_path, class: "btn btn-default btn-primary" %></a>
+        </p>
+    </div>
+</div>
