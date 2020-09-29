@@ -13,7 +13,7 @@ class PetsController < ApplicationController
     end
 
     def show
-        @pet = Pet.find(params[:id])
+        @pet = Pet.friendly.find(params[:id])
         if @pet.nil?
             redirect_to  action: :index
         end

@@ -28,7 +28,7 @@ class AdoptionsController < ApplicationController
     end
 
     def pet
-        @pet = Pet.find(params[:pet_id])
+        @pet = Pet.friendly.find(params[:pet_id])
     end
 
 end
