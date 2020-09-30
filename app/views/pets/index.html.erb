@@ -51,7 +51,7 @@
                             <td><%=pet.date_of_birth%></td>
                             <td><%=pet.pet_type%></td>
                             <% if pet.adoption %>
-                            <td>Pet Adotado</td>
+                            <td>Adotado por <%= pet.adoption.name %></td>
                             <% else %>
                             <td><%= link_to "Adotar", new_pet_adoption_path(pet), class: 'btn btn-sm btn-info' %>
                             </td>

@@ -8,7 +8,7 @@
             <div class="col-md-6">
                 <strong>
                     <p class="card-text">Nome:
-                </strong> <%= @pet.name %>
+                </strong> <%= @pet.name.upcase %>
                 </p>
                 </row>
                 <row>
@@ -21,6 +21,12 @@
                     <strong>
                         <p class="card-text">Tipo do Pet:
                     </strong> <%= @pet.pet_type %>
+                    </p>
+                </row>
+                <row>
+                    <strong>
+                        <p class="card-text">Novo(a) Pai/Mãe:
+                    </strong> <%= @pet.adoption.name %>
                     </p>
                 </row>
             </div>
