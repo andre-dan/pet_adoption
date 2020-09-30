@@ -47,9 +47,9 @@
                     <tbody>
                         <%@pets.each do |pet|%>
                         <tr>
-                            <td><%=pet.name%></td>
-                            <td><%=pet.date_of_birth%></td>
-                            <td><%=pet.pet_type%></td>
+                            <td><%= pet.name %></td>
+                            <td><%= pet.date_of_birth.strftime('%d/%m/%Y') %></td>
+                            <td><%= pet.pet_type %></td>
                             <% if pet.adoption %>
                             <td>Adotado por <%= pet.adoption.name %></td>
                             <% else %>
@@ -89,13 +89,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <%@pets.select{ |pet| pet.adoption }.each do |pet|%>
+                        <% @pets.select{ |pet| pet.adoption }.each do |pet| %>
                         <tr>
-                            <td><%=pet.name%></td>
-                            <td><%=pet.date_of_birth%></td>
-                            <td><%=pet.pet_type%></td>
+                            <td><%= pet.name %></td>
+                            <td><%= pet.date_of_birth.strftime('%d/%m/%Y') %></td>
+                            <td><%= pet.pet_type %></td>
                             <% if pet.adoption %>
-                            <td>Pet Adotado</td>
+                            <td>Adotado por <%= pet.adoption.name %></td>
                             <% else %>
                             <td><%= link_to "Adotar", new_pet_adoption_path(pet), class: 'btn btn-sm btn-info' %>
                             </td>
@@ -137,9 +137,9 @@
                     <tbody>
                         <%@pets.select{|pet| pet.adoption.nil?}.each do |pet|%>
                         <tr>
-                            <td><%=pet.name%></td>
-                            <td><%=pet.date_of_birth%></td>
-                            <td><%=pet.pet_type%></td>
+                            <td><%= pet.name %></td>
+                            <td><%= pet.date_of_birth.strftime('%d/%m/%Y') %></td>
+                            <td><%= pet.pet_type %></td>
                             <% if pet.adoption %>
                             <td>Pet Adotado</td>
                             <% else %>
